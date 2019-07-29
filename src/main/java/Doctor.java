@@ -28,7 +28,7 @@ public class Doctor extends Human {
     public String toString() {
         return "================================================\n"+
                 specialization.substring(0,1).toUpperCase()+specialization.substring(1).toLowerCase()
-                + getName()+" "+ getSurname()+" "+ getPassID()+"\n"+
+                + " "+getName()+" "+ getSurname()+" "+ getPassID()+"\n"+
                 "================================================\n";
     }
 }
