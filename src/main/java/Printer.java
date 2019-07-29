@@ -8,15 +8,20 @@ public class Printer implements View {
     public void specifyRole(Command command){
         System.out.print(decore+ "Do you want to "+command+ " a doctor or a patient? " );
     }
+    public  void specializationRequest(){
+        System.out.print(decore+ "What Specialization does the doctor have? " );
+    }
+
     public  void fullNameRequest(Command command){
         System.out.print(decore+ "Please Specify name and surname! " );
     }
+
     public void passIdRequest()
     {
         System.out.print(decore+ "Enter the Passport Id ");
     }
     public void repetedName(String fullName, String role){
-        System.out.println(decore+ "There are several "+role+"s"+" with name "+ fullName+" " );
+        System.out.println(decore+ "There are several or no"+role+" with name "+ fullName+" " );
     }
     public void roleNotValid(){
         System.out.println(decore+"Enterd role is not valid. ");

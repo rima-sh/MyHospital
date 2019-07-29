@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class InputReceiver {
     private static InputReceiver inputReceiver = new InputReceiver();
     private Scanner scanner = new Scanner(System.in);
-    Printer printer = new Printer();
 
     public static InputReceiver getInputReceiver() {
         return inputReceiver;
@@ -11,8 +10,7 @@ public class InputReceiver {
 
     private InputReceiver() {
     }
-    public  Command getCommand() {
-        printer.commandRequest();
+    public  Command getCommand() throws WrongInputException {
         switch (scanner.nextLine().toLowerCase()) {
             case "add":
                 return Command.add;
@@ -24,33 +22,47 @@ public class InputReceiver {
                 return Command.selectAll;
             case "exit": return Command.exit;
         }
-        return getCommand();
+        throw new WrongInputException();
 
 
     }
-    public String[] getNameSurname(Command command) {
-        printer.fullNameRequest(command);
+    public String[] getNameSurname() throws WrongInputException {
+
         String[] fullName = scanner.nextLine().split(" ");
-        if(fullName.length == 2)
+        if(fullName.length == 2){
+            fullName[0] = fullName[0].substring(0,1).toUpperCase()+
+                    fullName[0].substring(1).toLowerCase();
+            fullName[1] = fullName[1].substring(0,1).toUpperCase()+
+                    fullName[1].substring(1).toLowerCase();
             return fullName;
-        printer.nameNotValid();
-        return getNameSurname(command);
+        }
+
+
+        throw new WrongInputException();
     }
-    public String getPassID(){
-        printer.passIdRequest();
-        String passID= scanner.nextLine();
+    public String getPassID() throws WrongInputException {
+        String passID= scanner.nextLine().toUpperCase();
         if(passID.length()==9)
             return passID;
-        printer.passIdNotValid();
-        return getPassID();
+        throw new WrongInputException();
     }
-    public  String getRole(Command command){
-        printer.specifyRole(command);
+    public  String getRole() throws WrongInputException {
         String role= scanner.nextLine().toLowerCase();
         if(role.equals("doctor") || role.equals("patient"))
             return role;
-        printer.roleNotValid();
-        return getRole(command);
+        throw new WrongInputException();
+    }
+    public  String getSpecialization(){
+        String specialization= scanner.nextLine().toLowerCase();
+
+            return specialization.substring(0,1).toUpperCase()+specialization.substring(1);
+
+    }
+    public  String getDisease(){
+        String disease= scanner.nextLine().toLowerCase();
+
+        return disease.substring(0,1).toUpperCase()+disease.substring(1);
+
     }
     public void close()
     {

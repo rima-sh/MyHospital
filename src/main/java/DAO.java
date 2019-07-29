@@ -1,5 +1,5 @@
 public interface DAO<T> {
-    public T Get (String id);
-    public boolean Add (T obj);
-    public boolean Remove(T obj);
+    public T get (String id);
+    public boolean add (T obj);
+    public boolean remove(T obj);
 }
